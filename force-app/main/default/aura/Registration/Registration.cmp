@@ -1,0 +1,31 @@
+<aura:component controller="utilityController" implements="force:appHostable" access="global">
+    <aura:attribute name="RegistrationData" type="Ecom_Registration__c"  default="{'sobjectType':'Ecom_Registration__c'}"/>
+    <aura:attribute name="EmailError" type="String" default="Email Already Exists!"/>
+    <aura:attribute name="emailerrorBoolean" type="Boolean" />
+    <aura:attribute name="editUserRecor" type="Boolean" />
+    <lightning:card>
+        <aura:if isTrue="{!v.editUserRecor}">
+      <button class="slds-button slds-button_neutral slds-float_right">Back to home</button></aura:if>
+    <div class="slds-box" style=" width: 400px; margin: 40px 0px 0 490px;">
+        <h3 style="font-size: 30px;text-align: center;">{!v.editUserRecor==true ? 'Edit Profile':'Registration Form'}</h3><br/>
+        <lightning:input type="text" name="FirstName" label="Enter First Name" value="{!v.RegistrationData.First_Name__c}" />
+        <lightning:input type="text" name="LastName" label="Enter Last Name" value="{!v.RegistrationData.Last_Name__c}"/>
+        <aura:if isTrue="{!v.emailerrorBoolean}">
+            {!v.EmailError}
+        </aura:if>
+        <lightning:input type="text" name="Email" label="Enter Email" value="{!v.RegistrationData.Email__c}" disabled="{!v.editUserRecor}" oncommit="{!c.emailvalidation}"/>
+        <lightning:input type="text" name="Phone" label="Enter Mobile" value="{!v.RegistrationData.Mobile__c}"/>
+        <lightning:select name="Gender" label="Gender" value="{!v.RegistrationData.Gender__c}">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </lightning:select>
+        <lightning:input type="text" name="userName" label="Enter username" value="{!v.RegistrationData.User_Name__c}"/>
+        <aura:if isTrue="{!(not(v.editUserRecor))}">
+        <lightning:input type="password" name="password" label="Enter password" value="{!v.RegistrationData.Password__c}"/>
+        </aura:if>
+            <br/>
+        <center>
+        <lightning:button label="{!v.editUserRecor==true ? 'Save':'Sign Up'}" variant="success" title="Sign Up" onclick="{!v.editUserRecor==true ? c.saveRecord:c.signUp}"/>&nbsp;
+        <lightning:button label="Cancel" variant="destructive" title="Cancel"/></center>
+    </div></lightning:card>
+</aura:component>

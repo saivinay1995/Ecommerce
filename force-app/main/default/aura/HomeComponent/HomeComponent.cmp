@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable" access="global">
+
+    <aura:attribute name="RegistrationData" type="Ecom_Registration__c" 
+                             default="{'sobjectType':'Ecom_Registration__c'}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"></aura:handler>
+
+    <div>
+        <span style="text-align:right">
+            {!v.RegistrationData.First_Name__c+' '+v.RegistrationData.Last_Name__c}
+        </span>
+    </div>
+    
+    <lightning:buttonMenu alternativeText="Show menu" variant="border-filled" iconName="utility:down"
+            onselect="{! c.handleSelect }">
+        <lightning:menuItem value="Registration" label="Edit Profile" />
+        <lightning:menuItem value="Logout" label="Logout" />
+    </lightning:buttonMenu>
+
+</aura:component>
