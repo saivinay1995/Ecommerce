@@ -4,6 +4,20 @@
     <aura:attribute name="uPassword" type="string"/>
     <aura:attribute name="userRecord" type="Ecom_Registration__c"/>
 
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:attribute name="toggleSpinner" type="boolean" default="false"/>
+     <!--  Loading spinner section -->
+     <aura:if isTrue="{!v.toggleSpinner}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if> 
+
     <div class="slds-form-element slds-align_absolute-center slds-m-top_x-large" style="margin-top:200px;">
         <div class="slds-col slds-size_6-of-12" style="background-color:white;">
             <form>

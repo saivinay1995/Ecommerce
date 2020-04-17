@@ -4,11 +4,29 @@
                              default="{'sobjectType':'Ecom_Registration__c'}"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"></aura:handler>
 
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:attribute name="toggleSpinner" type="boolean" default="false"/>
+     <!--  Loading spinner section -->
+     <aura:if isTrue="{!v.toggleSpinner}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if> 
+
     <div>
         <span style="text-align:right">
             {!v.RegistrationData.First_Name__c+' '+v.RegistrationData.Last_Name__c}
         </span>
     </div>
+
+    <lightning:input type="toggle" name="toggleButton" aura:id="tglbtn" label="Veg Only" 
+            messageToggleActive="I am Enable Now!" messageToggleInactive="I am Disable Now!" 
+            onchange="{!c.getToggleButtonValue}"/>
     
     <lightning:buttonMenu alternativeText="Show menu" variant="border-filled" iconName="utility:down"
             onselect="{! c.handleSelect }">

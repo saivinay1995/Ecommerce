@@ -4,8 +4,7 @@
         console.log(JSON.stringify(component.get('v.RegistrationData')));
     },
 
-    handleSelect: function(component, event){
-        
+    handleSelect: function(component, event){        
         var selectedMenuItemValue = event.getParam("value");
         if(selectedMenuItemValue == 'Logout'){
             var navigateEvent = $A.get("e.force:navigateToComponent");
@@ -23,5 +22,22 @@
             });
             navigateEvent.fire();
         }
-    }
+    },
+
+    getToggleButtonValue:function(component,event,helper){
+        var checkCmp = component.find("tglbtn").get("v.checked");
+        console.log(checkCmp);
+        if(checkCmp == true){
+            alert('Selected only Veg!!');
+        }
+        else{
+            alert('All Items');
+        }
+    },
+    showSpinner : function(component,event,helper){
+        component.set("v.toggleSpinner", true);  
+    },
+    hideSpinner : function(component,event,helper){
+        component.set("v.toggleSpinner", false);
+    },
 })

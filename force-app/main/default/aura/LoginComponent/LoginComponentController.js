@@ -57,5 +57,11 @@
     cancelForm:function(Component){
         Component.set('v.uName','');
         Component.set('v.uPassword','');
-    }
+    },
+    showSpinner : function(component,event,helper){
+        component.set("v.toggleSpinner", true);  
+    },
+    hideSpinner : function(component,event,helper){
+        component.set("v.toggleSpinner", false);
+    },
 })
