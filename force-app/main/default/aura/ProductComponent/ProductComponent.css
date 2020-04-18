@@ -1,0 +1,42 @@
+.THIS .alt-title {
+    display: block;
+    font-size: 18px;
+    overflow: hidden;
+    padding: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.THIS .pull-right {
+    float: right!important;
+}
+.THIS .ins-thumb {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+}
+.THIS .alt-name {
+    display: inline-block;
+    width: 80%;
+}
+.THIS .alt-ellipsis {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.THIS .alt-tagline {
+    line-height: 1.2;
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+    display: inline-block;
+}
+.THIS ins-thumb {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+}

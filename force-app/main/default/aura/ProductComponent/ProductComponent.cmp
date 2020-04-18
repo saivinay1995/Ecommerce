@@ -1,0 +1,50 @@
+<aura:component controller="utilityController" implements="force:appHostable" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"></aura:handler>
+    <aura:attribute name="toggleCategory" type="String" default=""></aura:attribute>
+    <aura:attribute name="itemsList" type="EcomProduct__c[]"></aura:attribute>
+
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <aura:attribute name="toggleSpinner" type="boolean" default="false"/>
+    <!--  Loading spinner section -->
+    <aura:if isTrue="{!v.toggleSpinner}">
+        <div class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if> 
+
+    <lightning:input type="toggle" name="toggleButton" aura:id="tglbtn" label="Veg Only"         
+        onchange="{!c.getToggleButtonValue}"/>
+    <br/><br/>
+        <div class="c-container">
+            <lightning:layout multipleRows="true">
+                <aura:iteration items="{!v.itemsList}" var="item">
+                    <lightning:layoutItem size="3" padding="around-small">
+                        <div class="slds-box" style="background-color: white;">
+                            <div class="alt-title">
+                                <div class="pull-right">
+                                    <span class="ins-thumb">
+                                        <aura:if isTrue="{!item.Product_Category__c == 'Veg'}">
+                                            <img src="{!$Resource.vegNonVegdots + '/icons/Veg_dot.png'}"></img>
+                                            <aura:set attribute="else">
+                                                <img src="{!$Resource.vegNonVegdots + '/icons/nonveg_dot.png'}"></img>
+                                            </aura:set>
+                                        </aura:if>
+                                    </span>
+                                </div>
+                                <div class="alt-name">
+                                    <div class="alt-ellipsis">Name:  {!item.Product_Name__c}</div>
+                                    <div class="alt-ellipsis">Price:  {!item.Product_Price__c}</div>
+                                    <div class="alt-tagline alt-ellipsis">Cloud POS for restaurants of all sizes&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                </aura:iteration>
+            </lightning:layout>
+        </div>
+</aura:component>	

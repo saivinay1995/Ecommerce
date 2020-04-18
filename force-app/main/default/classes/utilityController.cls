@@ -73,4 +73,19 @@ public with sharing class utilityController {
             System.debug('The email failed to send: ' + results[0].errors[0].message);
         }   
     }
+
+    @AuraEnabled
+    public static list<EcomProduct__c> retreiveAllProducts(string category){
+        list<EcomProduct__c> lstProducts = new list<EcomProduct__c>();
+        if(String.isBlank(category)){
+           lstProducts = [SELECT Id, Name, Product_Name__c, Product_Price__c, 
+                                Product_Picture__c, Product_Category__c FROM EcomProduct__c];
+        }
+        else{
+            lstProducts = [SELECT Id, Name, Product_Name__c, Product_Price__c, 
+                                Product_Picture__c, Product_Category__c FROM EcomProduct__c 
+                                where Product_Category__c =: category];
+        }        
+        return lstProducts;
+    }
 }
